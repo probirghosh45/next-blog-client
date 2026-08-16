@@ -1,6 +1,6 @@
 "use client";
 
-import { Book, Menu, Sunset, Trees, Zap } from "lucide-react";
+import { Menu } from "lucide-react";
 
 import {
   Accordion,
@@ -11,7 +11,6 @@ import {
 import { Button } from "@/components/ui/button";
 import {
   NavigationMenu,
-  NavigationMenuContent,
   NavigationMenuItem,
   NavigationMenuLink,
   NavigationMenuList,
@@ -25,6 +24,8 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { cn } from "@/lib/utils";
+import Link from "next/link";
+import { ModeToggle } from "./ModeToggle";
 
 interface MenuItem {
   title: string;
@@ -56,13 +57,12 @@ interface Navbar1Props {
   };
 }
 
-const Navbar
- = ({
+const Navbar = ({
   logo = {
-    url: "https://www.shadcnblocks.com",
+    url: "/",
     src: "https://deifkwefumgah.cloudfront.net/shadcnblocks/block/logos/shadcnblockscom-icon.svg",
     alt: "logo",
-    title: "Shadcnblocks.com",
+    title: "Blog Application",
   },
   menu = [
     { title: "Home", url: "/" },
@@ -102,8 +102,22 @@ const Navbar
             </div>
           </div>
           <div className="flex gap-2">
-            <Button variant="outline" size="sm" render={<a href={auth.login.url} />} nativeButton={false}>{auth.login.title}</Button>
-            <Button size="sm" render={<a href={auth.signup.url} />} nativeButton={false}>{auth.signup.title}</Button>
+            <ModeToggle/>
+            <Button
+              variant="outline"
+              size="sm"
+              render={<a href={auth.login.url} />}
+              nativeButton={false}
+            >
+              {auth.login.title}
+            </Button>
+            <Button
+              size="sm"
+              render={<a href={auth.signup.url} />}
+              nativeButton={false}
+            >
+              {auth.signup.title}
+            </Button>
           </div>
         </nav>
 
@@ -119,7 +133,9 @@ const Navbar
               />
             </a>
             <Sheet>
-              <SheetTrigger render={<Button variant="outline" size="icon" />}><Menu className="size-4" /></SheetTrigger>
+              <SheetTrigger render={<Button variant="outline" size="icon" />}>
+                <Menu className="size-4" />
+              </SheetTrigger>
               <SheetContent className="overflow-y-auto">
                 <SheetHeader>
                   <SheetTitle>
@@ -144,8 +160,19 @@ const Navbar
                   </Accordion>
 
                   <div className="flex flex-col gap-3">
-                    <Button variant="outline" render={<a href={auth.login.url} />} nativeButton={false}>{auth.login.title}</Button>
-                    <Button render={<a href={auth.signup.url} />} nativeButton={false}>{auth.signup.title}</Button>
+                    <Button
+                      variant="outline"
+                      render={<a href={auth.login.url} />}
+                      nativeButton={false}
+                    >
+                      {auth.login.title}
+                    </Button>
+                    <Button
+                      render={<a href={auth.signup.url} />}
+                      nativeButton={false}
+                    >
+                      {auth.signup.title}
+                    </Button>
                   </div>
                 </div>
               </SheetContent>
@@ -162,25 +189,19 @@ const renderMenuItem = (item: MenuItem) => {
     return (
       <NavigationMenuItem key={item.title}>
         <NavigationMenuTrigger>{item.title}</NavigationMenuTrigger>
-        <NavigationMenuContent className="bg-popover text-popover-foreground">
-          {item.items.map((subItem) => (
-            <NavigationMenuLink key={subItem.title} className="w-80" render={<SubMenuLink item={subItem} />}></NavigationMenuLink>
-          ))}
-        </NavigationMenuContent>
       </NavigationMenuItem>
     );
   }
-
-  return (
-    <NavigationMenuItem key={item.title}>
-      <NavigationMenuLink
-        href={item.url}
-        className="group inline-flex h-10 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-medium transition-colors hover:bg-muted hover:text-accent-foreground"
-      >
-        {item.title}
-      </NavigationMenuLink>
-    </NavigationMenuItem>
-  );
+return (
+<NavigationMenuItem key={item.title}>
+  <NavigationMenuLink
+    render={<Link href={item.url}></Link>}
+    className="group inline-flex h-10 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-medium transition-colors hover:bg-muted hover:text-accent-foreground"
+  >
+    {item.title}
+  </NavigationMenuLink>
+</NavigationMenuItem>
+);
 };
 
 const renderMobileMenuItem = (item: MenuItem) => {
