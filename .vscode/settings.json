@@ -1,3 +1,30 @@
 {
-  "cSpell.words": ["doesn", "Hugeicons"]
+  "cSpell.words": ["doesn", "Hugeicons"],
+  "workbench.colorCustomizations": {
+    "activityBar.activeBackground": "#9b69f1",
+    "activityBar.background": "#9b69f1",
+    "activityBar.foreground": "#15202b",
+    "activityBar.inactiveForeground": "#15202b99",
+    "activityBarBadge.background": "#f4b18a",
+    "activityBarBadge.foreground": "#15202b",
+    "activityBarTop.activeBackground": "#9b69f1",
+    "activityBarTop.background": "#9b69f1",
+    "activityBarTop.foreground": "#15202b",
+    "activityBarTop.inactiveForeground": "#15202b99",
+    "commandCenter.border": "#e7e7e799",
+    "commandCenter.foreground": "#e7e7e7",
+    "sash.hoverBorder": "#9b69f1",
+    "statusBar.background": "#7c3aed",
+    "statusBar.debuggingBackground": "#7c3aed",
+    "statusBar.debuggingForeground": "#e7e7e7",
+    "statusBar.foreground": "#e7e7e7",
+    "statusBarItem.hoverBackground": "#9b69f1",
+    "statusBarItem.remoteBackground": "#582508",
+    "statusBarItem.remoteForeground": "#e7e7e7",
+    "titleBar.activeBackground": "#7c3aed",
+    "titleBar.activeForeground": "#e7e7e7",
+    "titleBar.inactiveBackground": "#7c3aed99",
+    "titleBar.inactiveForeground": "#e7e7e799"
+  },
+  "peacock.color": "#7C3AED"
 }
