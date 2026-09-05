@@ -1,3 +1,4 @@
+import { blogService } from "@/services/blog.service";
 import Link from "next/link";
 
 const features = [
@@ -21,28 +22,30 @@ const features = [
   },
 ];
 
-const posts = [
-  {
-    title: "Getting Started with Next.js",
-    category: "Next.js",
-    description:
-      "Learn the fundamentals of Next.js and start building modern web applications.",
-  },
-  {
-    title: "Understanding TypeScript",
-    category: "TypeScript",
-    description:
-      "Discover how TypeScript can help you write safer and more maintainable code.",
-  },
-  {
-    title: "Building REST APIs with Express",
-    category: "Backend",
-    description:
-      "A practical introduction to building scalable REST APIs using Node.js and Express.",
-  },
-];
+// const posts = [
+//   {
+//     title: "Getting Started with Next.js",
+//     category: "Next.js",
+//     description:
+//       "Learn the fundamentals of Next.js and start building modern web applications.",
+//   },
+//   {
+//     title: "Understanding TypeScript",
+//     category: "TypeScript",
+//     description:
+//       "Discover how TypeScript can help you write safer and more maintainable code.",
+//   },
+//   {
+//     title: "Building REST APIs with Express",
+//     category: "Backend",
+//     description:
+//       "A practical introduction to building scalable REST APIs using Node.js and Express.",
+//   },
+// ];
 
-export default function HomePage() {
+export default async function HomePage() {
+  const posts = await blogService.getBlogPosts();
+  console.log(posts.data.data);
   return (
     <main className="min-h-screen">
       {/* Hero Section */}
@@ -53,8 +56,7 @@ export default function HomePage() {
           </span>
 
           <h1 className="mx-auto mt-6 max-w-4xl text-4xl font-bold tracking-tight sm:text-6xl">
-            Learn. Build.{" "}
-            <span className="text-primary">Grow.</span>
+            Learn. Build. <span className="text-primary">Grow.</span>
           </h1>
 
           <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-muted-foreground">
@@ -102,9 +104,7 @@ export default function HomePage() {
                 {feature.icon}
               </div>
 
-              <h3 className="text-lg font-semibold">
-                {feature.title}
-              </h3>
+              <h3 className="text-lg font-semibold">{feature.title}</h3>
 
               <p className="mt-2 text-sm leading-6 text-muted-foreground">
                 {feature.description}
@@ -137,9 +137,9 @@ export default function HomePage() {
           </div>
 
           <div className="grid gap-6 md:grid-cols-3">
-            {posts.map((post) => (
+            {posts?.data?.data?.map((post: { title: string; category: string; description: string }) => (
               <article
-                key={post.title}
+                key={String(post.title)}
                 className="group rounded-xl border bg-card p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-md"
               >
                 <span className="rounded-full bg-primary/10 px-3 py-1 text-xs font-medium text-primary">
